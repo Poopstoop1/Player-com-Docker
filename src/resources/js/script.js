@@ -14,19 +14,18 @@ document.addEventListener("DOMContentLoaded", function () {
     let music;
     let indexMusicaAtual = 0;
     let interval;
+    let musicas = [];
 
     async function fetchMusicas() {
-        const response = await fetch("http://localhost/api/musicas");
-        const musicas = await response.json();
-        return musicas;
+        const response = await fetch("http://localhost/api/");
+        const data = await response.json();
+        return data.musicas;
     }
 
     function formatarTempo(segundos) {
         const min = Math.floor(segundos / 60);
         const seg = Math.floor(segundos % 60);
-        return `${min
-            .toString()
-            .padStart(2, "0")}:${seg.toString().padStart(2, "0")}`;
+        return `${min.toString().padStart(2, "0")}:${seg.toString().padStart(2, "0")}`;
     }
 
     function updateMusicTime() {
@@ -57,8 +56,6 @@ document.addEventListener("DOMContentLoaded", function () {
             indexMusicaAtual = index;
         }
 
-        const musicas = await fetchMusicas();
-
         const musica = musicas[indexMusicaAtual];
         artistaMusica.innerHTML = musica.artist;
         nomeMusica.innerHTML = musica.title;
@@ -77,15 +74,22 @@ document.addEventListener("DOMContentLoaded", function () {
     buttonPlay.addEventListener("click", play);
     buttonPause.addEventListener("click", pause);
 
-    buttonNext.addEventListener("click", () => {
+    buttonNext.addEventListener("click", async () => {
         pause();
-        setMusic(indexMusicaAtual + 1);
+        await setMusic(indexMusicaAtual + 1);
         play();
     });
-    buttonPrevious.addEventListener("click", () => {
+
+    buttonPrevious.addEventListener("click", async () => {
         pause();
-        setMusic(indexMusicaAtual - 1);
+        await setMusic(indexMusicaAtual - 1);
         play();
     });
-    setMusic(indexMusicaAtual);
+
+    async function init() {
+        musicas = await fetchMusicas();
+        await setMusic(indexMusicaAtual);
+    }
+
+    init();
 });

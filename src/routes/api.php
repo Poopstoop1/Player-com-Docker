@@ -9,8 +9,15 @@ use App\Http\Controllers\PlayerController;
 
 
 
+Route::get('/',[PlayerController::class ,'listar']);
+Route::post('/',[PlayerController::class ,'salvarMusica']);
+Route::get('/{id}',[PlayerController::class ,'buscar']);
+Route::put('/{id}',[PlayerController::class ,'atualizar']);
+Route::delete('/{id}',[PlayerController::class ,'deletar']);
 
-Route::get('/',[ExemploController::class ,'index']);
+
+
+// Route::get('/',[ExemploController::class ,'index']);
 
 
 // Route::group(['middleware' => ['JWTToken']], function () {
@@ -20,13 +27,8 @@ Route::get('/',[ExemploController::class ,'index']);
 // });
 
 // Route::get('/player',[ExemploController::class ,'index']);
-Route::get('/', [PlayerController::class, 'index']);
-Route::get('/musicas/{id}', [PlayerController::class, 'buscarId']);
-Route::post('/musicas', [PlayerController::class, 'salvar']);
-Route::put('/musicas/{id}', [PlayerController::class, 'atualizar']);
-Route::delete('/musicas/{id}', [PlayerController::class, 'deletar']);
 
-
+// Route::get('/musicas',[PlayerController::class ,'index']);
 
 
 

@@ -11,14 +11,23 @@ document.addEventListener("DOMContentLoaded", function () {
     const buttonNext = document.querySelector("#next");
     const buttonPrevious = document.querySelector("#previous");
 
-    let music;
+    let music = null;
     let indexMusicaAtual = 0;
     let interval;
+    let musicas = [];
 
     async function fetchMusicas() {
-        const response = await fetch("http://localhost/api/");
-        const musicas = await response.json();
-        return musicas;
+        try {
+            const response = await fetch("http://localhost/api/");
+            if (!response.ok) {
+                throw new Error("Network response was not ok");
+            }
+            const data = await response.json();
+            return data.musicas;
+        } catch (error) {
+            console.error("Failed to fetch musicas:", error);
+            return [];
+        }
     }
 
     function formatarTempo(segundos) {
@@ -46,6 +55,7 @@ document.addEventListener("DOMContentLoaded", function () {
         buttonPlay.classList.remove("hide");
         buttonPause.classList.add("hide");
         music.pause();
+        clearInterval(interval);
     }
 
     async function setMusic(index) {
@@ -57,8 +67,6 @@ document.addEventListener("DOMContentLoaded", function () {
             indexMusicaAtual = index;
         }
 
-        const musicas = await fetchMusicas();
-
         const musica = musicas[indexMusicaAtual];
         artistaMusica.innerHTML = musica.artist;
         nomeMusica.innerHTML = musica.title;
@@ -66,6 +74,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         if (music) {
             music.pause();
+            music.removeEventListener("timeupdate", updateMusicTime);
         }
         music = new Audio(musica.audioUrl);
         music.addEventListener("loadedmetadata", function () {
@@ -77,15 +86,24 @@ document.addEventListener("DOMContentLoaded", function () {
     buttonPlay.addEventListener("click", play);
     buttonPause.addEventListener("click", pause);
 
-    buttonNext.addEventListener("click", () => {
+    buttonNext.addEventListener("click", async () => {
         pause();
-        setMusic(indexMusicaAtual + 1);
+        await setMusic(indexMusicaAtual + 1);
         play();
     });
-    buttonPrevious.addEventListener("click", () => {
+
+    buttonPrevious.addEventListener("click", async () => {
         pause();
-        setMusic(indexMusicaAtual - 1);
+        await setMusic(indexMusicaAtual - 1);
         play();
     });
-    setMusic(indexMusicaAtual);
+
+    (async () => {
+        musicas = await fetchMusicas();
+        if (musicas.length > 0) {
+            setMusic(indexMusicaAtual);
+        } else {
+            console.error("No music found.");
+        }
+    })();
 });

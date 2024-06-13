@@ -10,17 +10,21 @@ class PlayerController extends Controller
 {
 
     public function listar(){
-
         $lista = array();
-        $lista["musicas"][0]["title"] = "I Want You Back";
-        $lista["musicas"][0]["artist"] = "jakson fives";
-        $lista["musicas"][0]["imageUrl"] = "https://raw.githubusercontent.com/sbezerrarafa/encontro-com-feras/main/assets/jackson-fives.jpeg";
-        $lista["musicas"][0]["audioUrl"] = "https://github.com/sbezerrarafa/encontro-com-feras/raw/main/assets/jackson-fives.mp3";
-
-        $lista["musicas"][1]["title"] = "I Want You Back";
-        $lista["musicas"][1]["artist"] = "jakson fives";
-        $lista["musicas"][1]["imageUrl"] = "https://raw.githubusercontent.com/sbezerrarafa/encontro-com-feras/main/assets/jackson-fives.jpeg";
-        $lista["musicas"][1]["audioUrl"] = "https://github.com/sbezerrarafa/encontro-com-feras/raw/main/assets/jackson-fives.mp3";
+        $lista["musicas"][0] = [
+            "id" => 0,
+            "title" => "I Want You Back",
+            "artist" => "Jackson 5",
+            "imageUrl" => "https://raw.githubusercontent.com/sbezerrarafa/encontro-com-feras/main/assets/jackson-fives.jpeg",
+            "audioUrl" => "https://github.com/sbezerrarafa/encontro-com-feras/raw/main/assets/jackson-fives.mp3"
+        ];
+        $lista["musicas"][1] = [
+            "id" => 1,
+            "title" => "Pra onde eu irei?",
+            "artist" => "Morada",
+            "imageUrl" => "https://raw.githubusercontent.com/sbezerrarafa/encontro-com-feras/main/assets/morada.png",
+            "audioUrl" => "https://github.com/sbezerrarafa/encontro-com-feras/raw/main/assets/Pra-onde-eu-irei.mp3"
+        ];
 
         return response()->json($lista);
     }

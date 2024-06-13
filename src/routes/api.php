@@ -17,18 +17,6 @@ Route::delete('/{id}',[PlayerController::class ,'deletar']);
 
 
 
-// Route::get('/',[ExemploController::class ,'index']);
-
-
-// Route::group(['middleware' => ['JWTToken']], function () {
-
-//   Route::post('/',[AgendaController::class ,'cadastrar']);
-
-// });
-
-// Route::get('/player',[ExemploController::class ,'index']);
-
-// Route::get('/musicas',[PlayerController::class ,'index']);
 
 
 

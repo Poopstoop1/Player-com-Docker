@@ -25,7 +25,9 @@ document.addEventListener("DOMContentLoaded", function () {
     function formatarTempo(segundos) {
         const min = Math.floor(segundos / 60);
         const seg = Math.floor(segundos % 60);
-        return `${min.toString().padStart(2, "0")}:${seg.toString().padStart(2, "0")}`;
+        return `${min
+            .toString()
+            .padStart(2, "0")}:${seg.toString().padStart(2, "0")}`;
     }
 
     function updateMusicTime() {

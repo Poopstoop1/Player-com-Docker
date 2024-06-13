@@ -11,7 +11,7 @@ class ExemploController extends Controller
     }
 
     public function index(){
-        return view("player.index");
+        return view("player");
     }
 
 }

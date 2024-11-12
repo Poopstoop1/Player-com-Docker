@@ -16,7 +16,7 @@ O Docker foi utilizado para facilitar a implantação e o ambiente de desenvolvi
 ## Para rodar 
 
 - É necessario ter o docker desktop instalado. 
-- Passar o sistema de linux para windows caso esteja no windows 
+- Passar o sistema de linux para windows caso esteja no windows. 
 dar um git clone com a --config core.autocrlf=input para o sistema ficar todo em LF
 exemplo: git clone https://github.com/Poopstoop1/Player-com-Docker.git --config core.autocrlf=input
 

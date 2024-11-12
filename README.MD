@@ -1,10 +1,24 @@
-# Mentoria - API Laravel
+# Projeto - API Laravel
+
+Este projeto teve como objetivo criar um Music Player simples e funcional, utilizando uma variedade de tecnologias para oferecer uma experiência interativa e responsiva. 
+A interface foi desenvolvida com HTML, CSS e JavaScript, enquanto o back-end foi construído com Laravel (PHP) e integrado ao MySQL para o armazenamento de dados. 
+O Docker foi utilizado para facilitar a implantação e o ambiente de desenvolvimento.
 
 ## Diretórios
 
 - src = Aplicação wordpress
-- db = Arquivos do banco de dados (Local!!! Não subir para o git)
+- db = Arquivos do banco de dados
+- src/app =  controllers
+- src/resources = Arquivos do front-end
 - DockerConfig = Arquivos de configuração do Docker
+- scr/resources/player.blade.php = HTML
+
+## Para rodar 
+
+- É necessario ter o docker desktop instalado. 
+- Passar o sistema de linux para windows caso esteja no windows 
+dar um git clone com a --config core.autocrlf=input para o sistema ficar todo em LF
+exemplo: git clone https://github.com/Poopstoop1/Player-com-Docker.git --config core.autocrlf=input
 
 ## Como rodar
 
